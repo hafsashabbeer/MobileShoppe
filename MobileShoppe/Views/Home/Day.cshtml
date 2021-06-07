@@ -1,0 +1,43 @@
+﻿@model  IEnumerable<MobileShoppe.Models.Day>
+
+@{
+    ViewBag.Title = "Day";
+    Layout = "~/Views/Shared/_ViewSales.cshtml";
+}
+
+<h2>Sales by Date</h2>
+
+@using (Html.BeginForm("Day", "Home", FormMethod.Post))
+{
+    @Html.Label("Enter Date  ")
+    @Html.TextBox("date")
+    <br />
+    <br />
+    <input type="Submit" value="Search" />
+}
+@if (Model != null)
+{
+    <table>
+        <tr>
+            <th>Sales Id  </th>
+            <th>Company Name   </th>
+            <th>Model Number  </th>
+            <th>IMEINO  </th>
+            <th>Price  </th>
+        </tr>
+ 
+       @foreach (var item in Model)
+       {
+        <tr>
+            <th>@item.SalesId</th>
+            <th>@item.CompanyName</th>
+            <th>@item.ModelNumber</th>
+            <th>@item.IMEINO</th>
+            <th>@item.Price</th>
+        </tr>
+        }
+       
+    </table>
+    <h4>Total Sales of the day = @TempData["Total"]</h4>
+}
+

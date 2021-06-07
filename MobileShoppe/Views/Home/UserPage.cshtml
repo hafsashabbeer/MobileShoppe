@@ -1,0 +1,29 @@
+﻿@model MobileShoppe.Models.User
+
+@{
+    ViewBag.Title = "UserPage";
+}
+
+<h4>User Page</h4>
+@Html.ActionLink("Admin", "Admin", "Home")
+<br />
+<br />
+@using (Html.BeginForm("UserPage", "Home", FormMethod.Post))
+{
+    @Html.Label("Username")
+    <br />
+    @Html.TextBoxFor(Model => Model.UserName)
+    <br />
+    <br />
+    @Html.Label("Password")
+    <br />
+    @Html.PasswordFor(Model => Model.Password)
+    <br />
+    <br />
+    <input type="submit" value="Login" name="login" />
+    <br />
+    <br />
+    @Html.ActionLink("Forget Password","ForgetPassword","Home")
+
+}
+

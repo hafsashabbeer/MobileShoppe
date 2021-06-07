@@ -1,0 +1,51 @@
+﻿@model MobileShoppe.Models.EmployeeAdd
+
+@{
+    ViewBag.Title = "AddEmployee";
+    Layout = "~/Views/_WelcomeAdminPage1.cshtml";
+}
+
+<h4>Add Employee</h4>
+
+@using (Html.BeginForm("AddEmployee", "Home", FormMethod.Post))
+{
+    @Html.Label("Employee Name")
+    <br />
+    @Html.TextBoxFor(model => model.EmployeeName)
+    <br />
+    <br />
+    @Html.Label("Address")
+    <br />
+    @Html.TextBoxFor(model => model.Address)
+    <br />
+    <br />
+    @Html.Label("Mobile")
+    <br />
+    @Html.TextBoxFor(model => model.Mobile)
+    <br />
+    <br />
+    @Html.Label("User Name")
+    <br />
+    @Html.TextBoxFor(model => model.UserName)
+    <br />
+    <br />
+    @Html.Label("Password")
+    <br />
+    @Html.TextBoxFor(model => model.Password1)
+    <br />
+    <br />
+    @Html.Label("Retype Password")
+    <br />
+    @Html.TextBoxFor(model => model.Password2)
+    <br />
+    <br />
+    @Html.Label("Hint")
+    <br />
+    @Html.TextBoxFor(model => model.Hint)
+    <br />
+    <br />
+    <input type="submit" value="ADD" />
+
+    <h4>@TempData["message"]</h4>
+}
+

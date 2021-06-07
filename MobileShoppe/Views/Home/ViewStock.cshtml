@@ -1,0 +1,50 @@
+﻿@model MobileShoppe.Models.StockView
+
+@{
+    ViewBag.Title = "ViewStock";
+    Layout = "~/Views/_WelcomeUserPage.cshtml";
+}
+@section Scripts{
+    <script type="text/javascript" src="~/Scripts/jquery.js"></script>
+    <script type="text/javascript">
+        function GetUserModelNumber() {
+            //debugger;
+            var CompanyId = $('#CompanyId').val();
+            $.ajax({
+                url: 'GetUserModelNumbers',
+                type: 'Get',
+                datatype: 'JSON',
+                data: { id: CompanyId },
+                success: function (ModelNumbers) {
+                    //  debugger;
+                    $.each(ModelNumbers, function (i, ModelNumber) {
+                        $('#ModelId').append($('<option></option>').val(ModelNumber.Value).html(ModelNumber.Text));
+                    });
+                }
+
+            });
+        }
+    </script>
+
+}
+
+<h4>ViewStock</h4>
+@using (Html.BeginForm("ViewStock", "Home", FormMethod.Post))
+{
+    @Html.Label("Company Names")
+    <br />
+    @Html.DropDownListFor(Model => Model.CompanyId, Model.CompanyNames, "Select Company", htmlAttributes: new { @onchange = "GetUserModelNumber()" })
+    <br />
+    <br />
+    @Html.Label("Model Number")
+    <br />
+    @Html.DropDownListFor(Model => Model.ModelId, Model.ModelNumbers, "Select Model Number")
+    <br />
+    <br />
+    @Html.Label("Available Stock")
+    <br />
+    @Html.TextBox("AvailableStock",TempData["AvailableStock"], new { @readonly = "readonly"})
+    <br />
+    <br />
+    <input type="submit" value="Submit" />
+}

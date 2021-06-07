@@ -1,0 +1,24 @@
+﻿@model MobileShoppe.Models.Admin
+
+@{
+    ViewBag.Title = "Admin";
+}
+
+<h4>Admin Page</h4>
+
+@using (Html.BeginForm("Admin", "Home", FormMethod.Post))
+{
+    @Html.Label("Username")
+    <br />
+    @Html.TextBoxFor(Model => Model.Username)
+    <br />
+    <br />
+    @Html.Label("Password")
+    <br />
+    @Html.PasswordFor(Model => Model.Password)
+    <br />
+    <br />
+    <input type="submit" value="Login" name="login" />
+
+}
+

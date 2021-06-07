@@ -1,0 +1,69 @@
+﻿@model MobileShoppe.Models.StockUpdate
+
+@{
+    ViewBag.Title = "UpdateStock";
+    Layout = "~/Views/_WelcomeAdminPage1.cshtml";
+}
+@section Scripts{
+    <script type="text/javascript" src="~/Scripts/jquery.js"></script>
+    <script type="text/javascript">
+        function GetModelNumber() {
+            //debugger;
+            var CompanyId = $('#CompanyId').val();
+            $.ajax({
+                url: 'GetModelNumbers',
+                type: 'Get',
+                datatype: 'JSON',
+                data: { id: CompanyId },
+                success: function (ModelNumbers) {
+                  //  debugger;
+                    $.each(ModelNumbers, function (i, ModelNumber) {
+                        $('#ModelId').append($('<option></option>').val(ModelNumber.Value).html(ModelNumber.Text));
+                    });
+                }
+
+            });
+        }
+    </script>
+    
+    }
+
+<h4>Update Stock</h4>
+
+@using(Html.BeginForm("UpdateStock","Home",FormMethod.Post))
+{
+    @Html.Label("Transaction Id")
+    <br />
+    @Html.TextBoxFor(Model=>Model.TransactionId, new { @readonly = "readonly" })
+    <br />
+    <br />
+    @Html.Label("Company Names")
+    <br />
+    @Html.DropDownListFor(Model => Model.CompanyId,Model.CompanyNames,"Select Company",htmlAttributes:new { @onchange= "GetModelNumber()" })
+    <br />
+    <br />
+    @Html.Label("Model Number")
+    <br />
+    @Html.DropDownListFor(Model => Model.ModelId,Model.ModelNumbers,"Select Model Number")
+    <br />
+    <br />
+    @Html.Label("Quantity")
+    <br />
+    @Html.TextBoxFor(Model=>Model.Quantity)
+    <br />
+    <br />
+    @Html.Label("Date")
+    <br />
+    @Html.TextBoxFor(Model=>Model.Date)
+    <br />
+    <br />
+    @Html.Label("Amount")
+    <br />
+    @Html.TextBoxFor(Model=>Model.Amount)
+    <br />
+    <br />
+    <input type="submit" value="Update" />
+
+   <span>@TempData["message"]</span>
+}
+

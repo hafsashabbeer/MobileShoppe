@@ -1,0 +1,65 @@
+﻿@model MobileShoppe.Models.MobileAdd
+
+@{
+    ViewBag.Title = "AddMobile";
+    Layout = "~/Views/_WelcomeAdminPage1.cshtml";
+}
+@section Scripts{
+    <script type="text/javascript" src="~/Scripts/jquery.js"></script>
+    <script type="text/javascript">
+        function GetModelNumbers() {
+            debugger;
+            var CompanyId = $('#CompanyId').val();
+            $.ajax({
+                url: 'GetModelNumbersForMobile',
+                type: 'Get',
+                datatype: 'JSON',
+                data: { id: CompanyId },
+                success: function (ModelNumbers) {
+                    debugger;
+                    $.each(ModelNumbers, function (i, ModelNumber) {
+                        $('#ModelId').append($('<option></option>').val(ModelNumber.Value).html(ModelNumber.Text));
+                    });
+                }
+
+            });
+        }
+    </script>
+
+}
+
+<h4>Add Mobile</h4>
+
+@using (Html.BeginForm("AddMobile", "Home", FormMethod.Post))
+{
+    @Html.Label("CompanyNames")
+    <br />
+    @Html.DropDownListFor(Model => Model.CompanyId, Model.CompanyNames, "Select Company", htmlAttributes: new { @onchange = "GetModelNumbers()" })
+    <br />
+    <br />
+    @Html.Label("Model Number")
+    <br />
+    @Html.DropDownListFor(Model => Model.ModelId, Model.ModelNumbers, "Select Model Number")
+    <br />
+    <br />
+    @Html.Label("IMEI Number")
+    <br />
+    @Html.TextBoxFor(Model => Model.IMEINO)
+    <br />
+    <br />
+    @Html.Label("Price")
+    <br />
+    @Html.TextBoxFor(Model => Model.Price)
+    <br />
+    <br />
+    @Html.Label("Warranty")
+    <br />
+    @Html.TextBoxFor(Model => Model.Warranty)
+    <br />
+    <br />
+    <input type="submit" value="ADD" />
+
+    <span>@TempData["message"]</span>
+
+}
+

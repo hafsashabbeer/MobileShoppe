@@ -1,0 +1,44 @@
+﻿
+@model IEnumerable<MobileShoppe.Models.SearchIMEI>
+
+@{
+    ViewBag.Title = "SearchCustomerDetails";
+    Layout = "~/Views/_WelcomeUserPage.cshtml";
+}
+
+<h4>CustomerDetails</h4>
+
+@using (Html.BeginForm("SearchCustomerDetails", "Home", FormMethod.Post))
+{
+    @Html.Label("Enter IMEI Number  ")
+    @Html.TextBox("IMEI")
+    <br />
+    <br />
+    <input type="submit" value="Search" />
+    <br />
+    <br />
+}
+@if (Model != null)
+{
+    <table>
+
+        <tr>
+            <th>Customer Name  </th>
+            <th>Mobile Number  </th>
+            <th>EmailId  </th>
+            <th>Address  </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+
+            <th>@item.CustomerName</th>
+            <th>@item.MobileNumber</th>
+            <th>@item.EmailId</th>
+            <th>@item.Address</th>
+        </tr>
+        }
+
+    </table>
+}

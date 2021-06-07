@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @RenderSection("Scripts", required: false)
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <td>@Html.ActionLink("Sales", "Sales", "Home")</td>
+            </tr>
+            <tr>
+                <td>@Html.ActionLink("ViewStock", "ViewStock", "Home")</td>
+            </tr>
+            <tr>
+                <td>@Html.ActionLink("SearchCustomerByIMEINO", "SearchCustomerDetails", "Home")</td>
+            </tr>
+            <tr>
+                <td>@RenderBody()</td>
+            </tr>
+        </table>
+        
+    </div>
+</body>
+</html>

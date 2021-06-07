@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @RenderSection("Scripts", required:false)
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <td>@Html.ActionLink("AddCompany", "AddCompany", "Home")</td>
+            </tr>
+            <tr>
+                <td>@Html.ActionLink("AddModel", "AddModel", "Home")</td>
+            </tr>
+            <tr>
+                <td>@Html.ActionLink("UpdateStock", "UpdateStock", "Home")</td>
+            </tr>
+            <tr>
+                <td>@Html.ActionLink("AddMobile", "AddMobile", "Home")</td>
+            </tr>
+            <tr>
+                <td>@Html.ActionLink("ViewSales", "ViewSales", "Home")</td>
+            </tr>
+            <tr>
+                <td>@Html.ActionLink("AddEmployee", "AddEmployee", "Home")</td>
+            </tr>
+            <tr>
+                <td>@RenderBody()</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿@model MobileShoppe.Models.ModelAdd
+
+@{
+    ViewBag.Title = "AddModel";
+    Layout = "~/Views/_WelcomeAdminPage1.cshtml";
+}
+
+<h4>Add Model</h4>
+
+
+@using (Html.BeginForm("AddModel", "Home", FormMethod.Post))
+{
+    @Html.Label("Model Id");
+    <br />
+    @Html.TextBoxFor(model => model.ModelId,new { @readonly = "readonly" })
+    <br />
+    <br />
+    @Html.Label("Company Name")
+    <br />
+    @Html.DropDownListFor(Model => Model.CompanyId,Model.CompanyNames, "Select Company")
+    <br />
+    <br />
+
+    @Html.Label("Model Number")
+    <br />
+    @Html.TextBoxFor(Model => Model.ModelNumber)
+    <br />
+    <br />
+
+    @Html.Label("Available Quantity")
+    <br />
+    @Html.TextBoxFor(Model => Model.AvailableQuantity)
+    <br />
+    <br />
+
+    <input type="submit" value="ADD" />
+
+    <br />
+    <h2>@TempData["message"]</h2>
+
+
+}
+

@@ -1,0 +1,26 @@
+﻿@model MobileShoppe.Models.CompanyAdd
+
+@{
+    ViewBag.Title = "AddCompany";
+    Layout = "~/Views/_WelcomeAdminPage1.cshtml";
+}
+
+<h4>Add Company</h4>
+
+@using (Html.BeginForm("AddCompany", "Home", FormMethod.Post))
+{
+    @Html.Label("Company Id")
+    <br />
+    @Html.TextBoxFor(model=>model.CompanyId,new { @readonly ="readonly" })
+    <br />
+    <br />
+    @Html.Label("Company Name")
+    <br />
+    @Html.TextBoxFor(model => model.CompanyName)
+    <br />
+    <br />
+    <input type="submit" value="ADD" />
+
+    <h2>@TempData["message"]</h2>
+}
+

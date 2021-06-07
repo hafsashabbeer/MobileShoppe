@@ -1,0 +1,103 @@
+﻿@model MobileShoppe.Models.Sales
+
+@{
+    ViewBag.Title = "Sales";
+    Layout = "~/Views/_WelcomeUserPage.cshtml";
+}
+@section Scripts{
+    <script type="text/javascript" src="~/Scripts/jquery.js"></script>
+    <script type="text/javascript">
+        function GetModelNumber() {
+            //debugger;
+            var CompanyId = $('#CompanyId').val();
+
+            $.ajax({
+                url: 'GetModelNumbersForSales',
+                type: 'Get',
+                datatype: 'JSON',
+                data: { id: CompanyId },
+                success: function (ModelNumbers) {
+                    //  debugger;
+                    $.each(ModelNumbers, function (i, ModelNumber) {
+                        $('#ModelId').append($('<option></option>').val(ModelNumber.Value).html(ModelNumber.Text));
+                    });
+                }
+
+            });
+        }
+    </script>
+    <script type="text/javascript" src="~/Scripts/jquery.js"></script>
+    <script type="text/javascript">
+        function GetIMEINO() {
+            //debugger;
+            var ModelId = $('#ModelId').val();
+
+            $.ajax({
+                url: 'GetIMEINumbers',
+                type: 'Get',
+                datatype: 'JSON',
+                data: { id: ModelId },
+                success: function (IMEINumbers) {
+                    //  debugger;
+                    $.each(IMEINumbers, function (i, IMEINumber) {
+                        $('#IMEINO').append($('<option></option>').val(IMEINumber.Value).html(IMEINumber.Text));
+                    });
+                }
+
+            });
+        }
+    </script>
+
+}
+
+<h4>Sales</h4>
+
+@using (Html.BeginForm("Sales", "Home", FormMethod.Post))
+
+{
+    @Html.Label("Customer Name")
+    <br />
+    @Html.TextBoxFor(Model => Model.CustomerName)
+    <br />
+    <br />
+    @Html.Label("Mobile Number")
+    <br />
+    @Html.TextBoxFor(Model => Model.MobileNumber)
+    <br />
+    <br />
+    @Html.Label("Location")
+    <br />
+    @Html.TextBoxFor(Model => Model.Address)
+    <br />
+    <br />
+    @Html.Label("Email Id")
+    <br />
+    @Html.TextBoxFor(Model => Model.EmailId)
+    <br />
+    <br />
+    @Html.Label("Company Names")
+    <br />
+    @Html.DropDownListFor(Model => Model.CompanyId, Model.CompanyNames, "Select Comapnay Name", htmlAttributes: new { @onchange = "GetModelNumber()" })
+    <br />
+    <br />
+    @Html.Label("Model Numbers")
+    <br />
+    @Html.DropDownListFor(Model => Model.ModelId, Model.ModelNumbers, "Select Model Number", htmlAttributes: new { @onchange = "GetIMEINO()" })
+    <br />
+    <br />
+    @Html.Label("IMEI Numbers")
+    <br />
+    @Html.DropDownListFor(Model => Model.ModelId, Model.IMEINO, "Select IMEINO", new { id = "IMEINO" })
+    <br />
+    <br />
+    @Html.Label("Price per Piece")
+    <br />
+    @Html.TextBoxFor(Model => Model.Price)
+    <br />
+    <br />
+    <input type="submit" value="Submit" />
+
+    <h3>@TempData["message"]</h3>
+
+}
+

@@ -1,0 +1,58 @@
+﻿@model MobileShoppe.Models.Sales
+
+@{
+    ViewBag.Title = "Confirmation";
+    Layout = "~/Views/_WelcomeUserPage.cshtml";
+}
+
+<h4>Confirm Details</h4>
+
+@using (Html.BeginForm("Confirmation", "Home", FormMethod.Post))
+{
+    @Html.Label("Customer Nmae")
+    <br />
+    @Html.TextBoxFor(Model => Model.CustomerName, new { @readonly = "readonly" })
+    <br />
+    <br />
+    @Html.Label("Mobile Number")
+    <br />
+    @Html.TextBoxFor(Model => Model.MobileNumber, new { @readonly = "readonly" })
+    <br />
+    <br />
+    @Html.Label("Email Id")
+    <br />
+    @Html.TextBoxFor(Model => Model.EmailId, new { @readonly = "readonly" })
+    <br />
+    <br />
+    @Html.Label("Company Name")
+    <br />
+    @Html.TextBoxFor(Model => Model.CompanyName, new { @readonly = "readonly" })
+    <br />
+    <br />
+    @Html.Label("Model Number")
+    <br />
+    @Html.TextBoxFor(Model => Model.ModelNumber, new { @readonly = "readonly" })
+    <br />
+    <br />
+    @Html.Label("IMEI Number")
+    <br />
+    @Html.TextBoxFor(Model => Model.IMEINum, new { @readonly = "readonly" })
+    <br />
+    <br />
+    @Html.Label("Price per piece")
+    <br />
+    @Html.TextBoxFor(Model => Model.Price, new { @readonly = "readonly" })
+    <br />
+    <br />
+    @Html.Label("Warranty")
+    <br />
+    @Html.TextBoxFor(Model => Model.Warranty, new { @readonly = "readonly" })
+    <br />
+    <br />
+    <input type="submit" value="Ok" name="Ok" />
+    <a href="/Home/Sales">
+        <input type="button" value="Cancel" name="Cancel" />
+    </a>
+    <br />
+    <br />
+}
