@@ -1,4 +1,4 @@
-# MobileShoppe
+# MobileShoppe Project
 This is my first project after learning ASP.Net Mvc and SQL Server
 
 Project Objective:
